@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页 1/21 (封面页)</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Applying the Noto Sans font globally */
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        /* Style for the background image to ensure it's full screen and has an overlay */
+        .bg-cover-image {
+            background-image: linear-gradient(rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.8)), url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        /* Transition for the modal */
+        #notes-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-cover-image h-screen w-screen flex items-center justify-center text-white overflow-hidden p-4">
+
+    <!-- Main Content Container -->
+    <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in-down" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+            基于精益六西格玛的S公司在线商品质量管理优化研究
+        </h1>
+        <h2 class="text-2xl md:text-3xl font-medium mb-12 animate-fade-in-up" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
+            硕士学位论文中期汇报
+        </h2>
+        <div class="space-y-4 text-lg md:text-xl animate-fade-in">
+            <p><span class="font-semibold">论文题目：</span> 基于精益六西格玛的S公司在线商品质量管理优化研究</p>
+            <p><span class="font-semibold">汇 报 人：</span> XXX</p>
+            <p><span class="font-semibold">指导教师：</span> XXX 教授</p>
+            <p><span class="font-semibold">汇报日期：</span> XXXX年XX月XX日</p>
+        </div>
+    </div>
+
+    <!-- Speaker Notes Button -->
+    <button id="notes-btn" class="fixed bottom-5 right-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+        讲者备注
+    </button>
+
+    <!-- Speaker Notes Modal -->
+    <div id="notes-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="notes-content" class="bg-gray-800 text-gray-200 rounded-lg shadow-2xl p-8 max-w-2xl w-full transform -translate-y-10 transition-transform duration-300">
+            <h3 class="text-2xl font-bold mb-4 text-blue-300">讲者备注</h3>
+            <p class="text-base leading-relaxed">
+                尊敬的各位评委老师，下午好。我是XXX，我的硕士学位论文研究方向是《基于精益六西格玛的S公司在线商品质量管理优化研究》。我的指导老师是XXX教授。今天，我将向各位老师汇报我目前的研究进展、阶段性成果以及后续的研究计划。请各位老师批评指正。
+            </p>
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // Get references to the button and modal elements
+        const notesBtn = document.getElementById('notes-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const notesModal = document.getElementById('notes-modal');
+        const notesContent = document.getElementById('notes-content');
+
+        // Function to open the modal
+        function openModal() {
+            notesModal.classList.remove('opacity-0', 'pointer-events-none');
+            notesContent.classList.remove('-translate-y-10');
+            notesContent.classList.add('translate-y-0');
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            notesContent.classList.add('-translate-y-10');
+            notesContent.classList.remove('translate-y-0');
+            notesModal.classList.add('opacity-0');
+            // Wait for the transition to finish before hiding it completely
+            setTimeout(() => {
+                notesModal.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        // Event listeners for opening and closing the modal
+        notesBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Close modal if the background is clicked
+        notesModal.addEventListener('click', function(event) {
+            if (event.target === notesModal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with the Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

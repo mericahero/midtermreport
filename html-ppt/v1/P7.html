@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页 7/21 (案例企业：S公司概况)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+        }
+        #notes-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .map-container {
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .glowing-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 12px #3b82f6, 0 0 20px #3b82f6;
+        }
+        .glowing-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            70% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4 md:p-8">
+
+    <div class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8 md:p-12">
+        <header class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 border-b-4 border-blue-500 pb-3">
+                2.3 案例企业：S公司概况
+            </h1>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            <!-- Left Column: Text Content -->
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h3 class="text-xl font-bold text-blue-700 mb-2">公司定位</h3>
+                    <p class="text-base leading-relaxed">全球领先的综合性电子商务平台。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-blue-700 mb-2">业务特点</h3>
+                    <p class="text-base leading-relaxed">业务遍及全球，用户与商家数量庞大，交易体量巨大。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-blue-700 mb-2">商品特性 (挑战来源)</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start"><span class="text-blue-500 font-bold mr-2">&#9679;</span>SKU数量巨大且高速增长</li>
+                        <li class="flex items-start"><span class="text-blue-500 font-bold mr-2">&#9679;</span>品类繁多且复杂度高</li>
+                        <li class="flex items-start"><span class="text-blue-500 font-bold mr-2">&#9679;</span>新品更新迭代迅速</li>
+                        <li class="flex items-start"><span class="text-blue-500 font-bold mr-2">&#9679;</span>商家来源全球化、背景多样</li>
+                        <li class="flex items-start"><span class="text-blue-500 font-bold mr-2">&#9679;</span>跨境贸易占比高、合规环境复杂</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column: Visuals -->
+            <div class="flex flex-col space-y-6">
+                <!-- Map Container -->
+                <div class="map-container w-full h-64 md:h-80 rounded-lg shadow-inner overflow-hidden">
+                    <!-- Glowing dots for major markets -->
+                    <div class="glowing-dot" style="top: 35%; left: 20%;"></div> <!-- North America -->
+                    <div class="glowing-dot" style="top: 30%; left: 50%;"></div> <!-- Europe -->
+                    <div class="glowing-dot" style="top: 40%; left: 80%;"></div> <!-- East Asia -->
+                </div>
+                <!-- Icons for product characteristics -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7l8 4.5 8-4.5M12 15.5V21" /></svg>
+                        <span class="text-xs font-semibold text-gray-700">SKU数量巨大</span>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                        <span class="text-xs font-semibold text-gray-700">品类繁多</span>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        <span class="text-xs font-semibold text-gray-700">更新迅速</span>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9M3 12a9 9 0 019-9m-9 9h18" /></svg>
+                        <span class="text-xs font-semibold text-gray-700">全球化</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Speaker Notes Button -->
+    <button id="notes-btn" class="fixed bottom-5 right-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+        讲者备注
+    </button>
+
+    <!-- Speaker Notes Modal -->
+    <div id="notes-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="notes-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full transform -translate-y-10 transition-transform duration-300">
+            <h3 class="text-2xl font-bold mb-4 text-blue-700">讲者备注</h3>
+            <p class="text-base text-gray-700 leading-relaxed">
+                本次研究的案例企业S公司，是全球电商行业的领导者。理解其业务与商品特性，是理解其质量管理挑战的关键。S平台上的商品SKU数量以亿计，品类极其复杂，新品迭代速度飞快。同时，商家来自全球各地，质量意识和合规水平参差不齐。特别是高占比的跨境贸易，使得商品必须同时满足不同国家和地区的法规与标准，这极大地增加了质量管理的复杂性和风险。这些特性共同构成了我们进行LSS优化的现实背景。
+            </p>
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        const notesBtn = document.getElementById('notes-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const notesModal = document.getElementById('notes-modal');
+        const notesContent = document.getElementById('notes-content');
+
+        function openModal() {
+            notesModal.classList.remove('opacity-0', 'pointer-events-none');
+            notesContent.classList.remove('-translate-y-10');
+        }
+
+        function closeModal() {
+            notesContent.classList.add('-translate-y-10');
+            notesModal.classList.add('opacity-0');
+            setTimeout(() => {
+                notesModal.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        notesBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        notesModal.addEventListener('click', (event) => {
+            if (event.target === notesModal) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

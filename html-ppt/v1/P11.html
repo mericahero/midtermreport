@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页 11/21 (测量阶段：KPI基线)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>    <!-- Chart.js and BoxPlot extension -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@3.10.0/build/index.umd.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+        }
+        #notes-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4 md:p-8">
+
+    <div class="w-full max-w-7xl mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">3.4 测量(Measure)阶段：关键绩效指标(KPIs)基线</h1>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <!-- Left Column: Efficiency Baseline -->
+            <div class="space-y-4">
+                <h2 class="text-2xl font-bold text-gray-800 text-center">效率基线</h2>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                    <canvas id="efficiencyChart"></canvas>
+                </div>
+                <div class="text-center text-gray-600">
+                    <p>某核心品类平均审核周期：<strong class="text-blue-600">24.5 小时</strong></p>
+                    <p>标准差：<strong class="text-blue-600">8.2 小时</strong> (流程极不稳定)</p>
+                </div>
+            </div>
+
+            <!-- Right Column: Quality Baseline -->
+            <div class="space-y-4">
+                <h2 class="text-2xl font-bold text-gray-800 text-center">质量基线</h2>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                    <canvas id="qualityChart"></canvas>
+                </div>
+                <div class="text-center text-gray-600">
+                     <p>约 <strong class="text-red-600">80%</strong> 的审核错误集中于两大原因</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Speaker Notes Button -->
+    <button id="notes-btn" class="fixed bottom-5 right-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+        讲者备注
+    </button>
+
+    <!-- Speaker Notes Modal -->
+    <div id="notes-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="notes-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full transform -translate-y-10 transition-transform duration-300">
+            <h3 class="text-2xl font-bold mb-4 text-blue-700">讲者备注</h3>
+            <p class="text-base text-gray-700 leading-relaxed">
+                除了流程效率，我们还对关键的质量和效率指标进行了基线测量。以某核心品类为例，平均审核周期长达24.5小时，更关键的是，标准差高达8.2小时，这说明流程不仅慢，而且极不稳定，商家完全无法预期自己的商品何时能上架。在质量方面，我们通过帕累托图分析发现，大约80%的审核错误，都集中在对新型违禁品和知识产权侵权识别不足这两大难题上。同时，我们也量化了特定类型违规的漏判率和合规信息的误判率。这些精确的基线数据，是我们后续分析和衡量改进效果的基石。
+            </p>
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // Data for Efficiency Chart (Box Plot)
+        // Generating sample data to reflect mean ~24.5 and std dev ~8.2
+        const boxPlotData = [12, 16, 18, 20, 21, 23, 24.5, 26, 28, 30, 33, 35, 41]; 
+        const efficiencyCtx = document.getElementById('efficiencyChart').getContext('2d');        new Chart(efficiencyCtx, {
+            type: 'boxplot',
+            data: {
+                labels: ['审核周期 (小时)'],
+                datasets: [{
+                    label: '审核周期分布',
+                    data: [boxPlotData],
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2,
+                    outlierRadius: 3,
+                    itemRadius: 3,
+                    medianColor: 'rgba(59, 130, 246, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: '审核周期分布箱线图'
+                    }
+                }
+            }
+        });
+
+        // Data for Quality Chart (Pareto)
+        const paretoLabels = ['新型违禁品', 'IP侵权', '描述不符', '图片质量差', '其他'];
+        const paretoData = [65, 20, 8, 5, 2];
+        const total = paretoData.reduce((acc, val) => acc + val, 0);
+        const cumulativePercentage = paretoData.map((val, i) => {
+            const sum = paretoData.slice(0, i + 1).reduce((acc, v) => acc + v, 0);
+            return (sum / total) * 100;
+        });
+
+        const qualityCtx = document.getElementById('qualityChart').getContext('2d');
+        new Chart(qualityCtx, {
+            type: 'bar',
+            data: {
+                labels: paretoLabels,
+                datasets: [
+                    {
+                        label: '错误数量',
+                        data: paretoData,
+                        backgroundColor: 'rgba(239, 68, 68, 0.6)',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y',
+                    },
+                    {
+                        label: '累计百分比',
+                        data: cumulativePercentage,
+                        type: 'line',
+                        backgroundColor: 'rgba(79, 70, 229, 0.8)',
+                        borderColor: 'rgba(79, 70, 229, 1)',
+                        tension: 0.1,
+                        yAxisID: 'y1',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                   legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '审核错误原因帕累托图'
+                    },
+                    tooltip: {
+                       mode: 'index',
+                       intersect: false,
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                           display: true,
+                           text: '错误数量'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: 0,
+                        max: 100,
+                        grid: {
+                            drawOnChartArea: false, 
+                        },
+                         ticks: {
+                            callback: function(value) {
+                                return value + "%"
+                            }
+                        },
+                        title: {
+                           display: true,
+                           text: '累计百分比'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Modal script
+        const notesBtn = document.getElementById('notes-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const notesModal = document.getElementById('notes-modal');
+        const notesContent = document.getElementById('notes-content');
+
+        function openModal() {
+            notesModal.classList.remove('opacity-0', 'pointer-events-none');
+            notesContent.classList.remove('-translate-y-10');
+        }
+
+        function closeModal() {
+            notesContent.classList.add('-translate-y-10');
+            notesModal.classList.add('opacity-0');
+            setTimeout(() => {
+                notesModal.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        notesBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        notesModal.addEventListener('click', (event) => {
+            if (event.target === notesModal) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

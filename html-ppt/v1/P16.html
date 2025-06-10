@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页 16/21 (下一步计划：分析阶段深化)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f4f7f9;
+        }
+        #notes-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .funnel-top {
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+        }
+        .funnel-middle {
+            clip-path: polygon(10% 0, 90% 0, 80% 100%, 20% 100%);
+        }
+        .funnel-bottom {
+            clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+            transform: perspective(10px) rotateX(1deg); /* Slight 3D effect */
+        }
+        .analysis-tool-card {
+             transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .analysis-tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4 md:p-8">
+
+    <div class="w-full max-w-6xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">4.1 下一步计划：分析(Analyze)阶段深化</h1>
+            <p class="text-lg text-gray-600 mt-2">目标：从“潜在原因”到“关键少数根本原因 (Vital Few X's)”的最终验证</p>
+        </header>
+
+        <main class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <div class="flex flex-col items-center">
+                <!-- Funnel Top -->
+                <div class="w-full max-w-2xl bg-blue-500 text-white text-center p-4 rounded-t-lg funnel-top">
+                    <h3 class="text-xl font-bold">众多潜在原因</h3>
+                    <p class="text-sm">(来自鱼骨图)</p>
+                </div>
+                
+                <!-- Funnel Middle (Analysis Tools) -->
+                <div class="w-[90%] max-w-[calc(2rem+18rem*3)] bg-blue-400 p-6 funnel-middle">
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="analysis-tool-card bg-white p-4 rounded-lg shadow">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto text-blue-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <h4 class="font-semibold text-gray-700">假设检验</h4>
+                        </div>
+                         <div class="analysis-tool-card bg-white p-4 rounded-lg shadow">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto text-blue-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
+                             <h4 class="font-semibold text-gray-700">回归分析</h4>
+                        </div>
+                         <div class="analysis-tool-card bg-white p-4 rounded-lg shadow">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto text-blue-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                             <h4 class="font-semibold text-gray-700">FMEA</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funnel Bottom -->
+                <div class="w-[72%] max-w-[calc(1.6rem+14.4rem*3)] bg-green-500 text-white text-center p-4 rounded-b-lg funnel-bottom">
+                     <h3 class="text-xl font-bold">关键少数根本原因</h3>
+                     <p class="text-sm">(Vital Few X's)</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Speaker Notes Button -->
+    <button id="notes-btn" class="fixed bottom-5 right-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+        讲者备注
+    </button>
+
+    <!-- Speaker Notes Modal -->
+    <div id="notes-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="notes-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full transform -translate-y-10 transition-transform duration-300">
+            <h3 class="text-2xl font-bold mb-4 text-blue-700">讲者备注</h3>
+            <p class="text-base text-gray-700 leading-relaxed">
+                展望下一阶段的工作，我们将首先完成并深化分析阶段。我们的目标是从已经识别出的一系列潜在原因中，通过严谨的数据分析，筛选出真正起决定性作用的‘关键少数’。我们将大量运用统计工具，比如，用假设检验来验证培训是否真的有效；用回归分析来量化商家提交的信息质量到底对审核时长有多大影响。我们还会运用FMEA，系统性地评估和预防流程中潜在的失效风险。通过这些工作，我们将确保我们的改进措施能够真正做到‘对症下药’。
+            </p>
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        const notesBtn = document.getElementById('notes-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const notesModal = document.getElementById('notes-modal');
+        const notesContent = document.getElementById('notes-content');
+
+        function openModal() {
+            notesModal.classList.remove('opacity-0', 'pointer-events-none');
+            notesContent.classList.remove('-translate-y-10');
+        }
+
+        function closeModal() {
+            notesContent.classList.add('-translate-y-10');
+            notesModal.classList.add('opacity-0');
+            setTimeout(() => {
+                notesModal.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        notesBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        notesModal.addEventListener('click', (event) => {
+            if (event.target === notesModal) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

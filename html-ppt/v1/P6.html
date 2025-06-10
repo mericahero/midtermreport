@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页 6/21 (研究方法与技术路线)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+        }
+        #notes-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .dmaic-stage {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+        .dmaic-stage:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .arrow {
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4 md:p-8">
+
+    <div class="w-full max-w-7xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">2.2 研究方法与技术路线</h1>
+        </header>
+
+        <main class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <!-- Research Methods Section -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-700 text-center mb-6">研究方法</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-blue-800 text-lg">案例研究法</h3>
+                        <p class="text-blue-600 text-sm mt-1">深入S公司进行实证分析</p>
+                    </div>
+                    <div class="bg-indigo-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-indigo-800 text-lg">文献研究法</h3>
+                        <p class="text-indigo-600 text-sm mt-1">构建理论基础与框架</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-lg">
+                        <h3 class="font-semibold text-emerald-800 text-lg">统计分析法</h3>
+                        <p class="text-emerald-600 text-sm mt-1">数据驱动决策与验证</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DMAIC Flowchart Section -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-700 text-center mb-8">核心技术路线: DMAIC 改进循环</h2>
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <!-- Define -->
+                    <div class="dmaic-stage flex-1 text-center p-4 rounded-xl border-t-4 border-blue-500 bg-white shadow-lg">
+                        <div class="bg-blue-100 text-blue-600 rounded-full h-12 w-12 mx-auto flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-blue-800">D (Define)</h3>
+                        <p class="text-sm text-gray-600 mt-1">定义问题与目标</p>
+                    </div>
+
+                    <div class="arrow text-4xl hidden md:block">&rarr;</div>
+                    <div class="arrow text-4xl md:hidden transform rotate-90 my-2">&darr;</div>
+
+
+                    <!-- Measure -->
+                    <div class="dmaic-stage flex-1 text-center p-4 rounded-xl border-t-4 border-indigo-500 bg-white shadow-lg">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-12 w-12 mx-auto flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" /></svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-indigo-800">M (Measure)</h3>
+                        <p class="text-sm text-gray-600 mt-1">测量现状与基线</p>
+                    </div>
+
+                    <div class="arrow text-4xl hidden md:block">&rarr;</div>
+                    <div class="arrow text-4xl md:hidden transform rotate-90 my-2">&darr;</div>
+
+                    <!-- Analyze -->
+                    <div class="dmaic-stage flex-1 text-center p-4 rounded-xl border-t-4 border-emerald-500 bg-white shadow-lg">
+                        <div class="bg-emerald-100 text-emerald-600 rounded-full h-12 w-12 mx-auto flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-emerald-800">A (Analyze)</h3>
+                        <p class="text-sm text-gray-600 mt-1">分析数据与根源</p>
+                    </div>
+                    
+                    <div class="arrow text-4xl hidden md:block">&rarr;</div>
+                    <div class="arrow text-4xl md:hidden transform rotate-90 my-2">&darr;</div>
+
+
+                    <!-- Improve -->
+                    <div class="dmaic-stage flex-1 text-center p-4 rounded-xl border-t-4 border-amber-500 bg-white shadow-lg">
+                        <div class="bg-amber-100 text-amber-600 rounded-full h-12 w-12 mx-auto flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-amber-800">I (Improve)</h3>
+                        <p class="text-sm text-gray-600 mt-1">改进方案与实施</p>
+                    </div>
+
+                    <div class="arrow text-4xl hidden md:block">&rarr;</div>
+                    <div class="arrow text-4xl md:hidden transform rotate-90 my-2">&darr;</div>
+
+                    <!-- Control -->
+                    <div class="dmaic-stage flex-1 text-center p-4 rounded-xl border-t-4 border-red-500 bg-white shadow-lg">
+                        <div class="bg-red-100 text-red-600 rounded-full h-12 w-12 mx-auto flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-red-800">C (Control)</h3>
+                        <p class="text-sm text-gray-600 mt-1">控制过程与成果</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Speaker Notes Button -->
+    <button id="notes-btn" class="fixed bottom-5 right-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+        讲者备注
+    </button>
+
+    <!-- Speaker Notes Modal -->
+    <div id="notes-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="notes-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full transform -translate-y-10 transition-transform duration-300">
+            <h3 class="text-2xl font-bold mb-4 text-blue-700">讲者备注</h3>
+            <p class="text-base text-gray-700 leading-relaxed">
+                本研究主要采用案例研究法，以S公司为对象进行深入的实证研究。核心技术路线，是严格遵循精益六西格玛经典的DMAIC改进框架。首先，在‘定义’阶段，我们明确项目范围和目标。其次，在‘测量’阶段，我们用数据量化当前流程的绩效基线。接着，在‘分析’阶段，我们深挖导致问题的根本原因。然后，在‘改进’阶段，我们设计并实施解决方案。最后，在‘控制’阶段，我们确保改进成果得以维持并建立长效机制。接下来的汇报，我将主要围绕这一路线展开。
+            </p>
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        const notesBtn = document.getElementById('notes-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const notesModal = document.getElementById('notes-modal');
+        const notesContent = document.getElementById('notes-content');
+
+        function openModal() {
+            notesModal.classList.remove('opacity-0', 'pointer-events-none');
+            notesContent.classList.remove('-translate-y-10');
+        }
+
+        function closeModal() {
+            notesContent.classList.add('-translate-y-10');
+            notesModal.classList.add('opacity-0');
+            setTimeout(() => {
+                notesModal.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        notesBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        notesModal.addEventListener('click', (event) => {
+            if (event.target === notesModal) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

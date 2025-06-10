@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页 5/21 (文献综述与理论基础)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+        }
+        #notes-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .theory-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+        .theory-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4 md:p-8">
+
+    <div class="w-full max-w-6xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">2.1 文献综述与理论基础</h1>
+        </header>
+
+        <main class="flex flex-col items-center justify-center space-y-8">
+            <!-- LSS Formula -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 w-full">
+                <!-- Lean Card -->
+                <div class="theory-card w-full md:w-1/3 bg-white p-6 rounded-2xl shadow-lg border-t-4 border-cyan-500">
+                    <h3 class="text-2xl font-bold text-cyan-700 text-center">精益思想 (Lean)</h3>
+                    <p class="text-center text-cyan-600 font-semibold text-lg mb-4">(速度)</p>
+                    <p class="text-gray-600 leading-relaxed mb-4">核心是识别并消除流程中的“浪费”(Muda)，关注 <strong class="text-gray-800">价值流</strong> 与 <strong class="text-gray-800">速度</strong>。</p>
+                    <div class="border-t pt-3 mt-3">
+                        <p class="text-sm font-semibold text-gray-500">关键工具:</p>
+                        <p class="text-xs text-gray-500">VSM, 5S, 标准化作业, JIT</p>
+                    </div>
+                </div>
+
+                <!-- Plus Sign -->
+                <div class="text-5xl font-light text-gray-400 mx-4">+</div>
+
+                <!-- Six Sigma Card -->
+                <div class="theory-card w-full md:w-1/3 bg-white p-6 rounded-2xl shadow-lg border-t-4 border-indigo-500">
+                    <h3 class="text-2xl font-bold text-indigo-700 text-center">六西格玛 (Six Sigma)</h3>
+                    <p class="text-center text-indigo-600 font-semibold text-lg mb-4">(质量)</p>
+                    <p class="text-gray-600 leading-relaxed mb-4">核心是减少流程中的“变异”(Variation)，关注 <strong class="text-gray-800">数据驱动</strong> 与 <strong class="text-gray-800">质量</strong>。</p>
+                     <div class="border-t pt-3 mt-3">
+                        <p class="text-sm font-semibold text-gray-500">关键工具:</p>
+                        <p class="text-xs text-gray-500">DMAIC, MSA, SPC, DOE</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Equals and Result -->
+            <div class="flex flex-col items-center w-full mt-8">
+                <div class="text-5xl font-light text-gray-400 mb-6">=</div>
+                <div class="theory-card w-full md:w-3/5 bg-gradient-to-br from-emerald-500 to-green-600 text-white p-8 rounded-2xl shadow-2xl">
+                    <h3 class="text-3xl font-bold text-center">精益六西格玛 (LSS)</h3>
+                    <p class="text-center text-lg mt-2 mb-4">“更快地做更好的事”</p>
+                    <p class="text-center text-emerald-100 leading-relaxed">系统性解决复杂问题，实现 <strong class="font-semibold text-white">速度</strong> 与 <strong class="font-semibold text-white">质量</strong> 的整合。</p>
+                </div>
+            </div>
+
+            <!-- Other Theories -->
+            <div class="w-full md:w-3/5 text-center mt-8 pt-6 border-t">
+                 <h4 class="text-xl font-bold text-gray-700">电商平台质量管理理论</h4>
+                 <p class="text-gray-600 mt-2">信息不对称、平台治理等理论为理解问题提供了框架。</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Speaker Notes Button -->
+    <button id="notes-btn" class="fixed bottom-5 right-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+        讲者备注
+    </button>
+
+    <!-- Speaker Notes Modal -->
+    <div id="notes-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="notes-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full transform -translate-y-10 transition-transform duration-300">
+            <h3 class="text-2xl font-bold mb-4 text-blue-700">讲者备注</h3>
+            <p class="text-base text-gray-700 leading-relaxed">
+                为解决上述问题，本研究的理论基础主要建立在精益六西格玛之上。它有机地结合了两种强大的管理思想：一是源自丰田的‘精益生产’，它教我们如何识别并消除流程中不增值的浪费，从而提升速度和效率，核心工具是价值流图VSM。二是源自摩托罗拉的‘六西格玛’，它教我们如何通过数据驱动，减少流程的变异，从而达到近乎完美的质量水平，核心方法是DMAIC循环。精益六西格玛的整合，使得我们既能关注速度，又能保证质量，这与我们旨在解决S公司效率与质量双重痛点的目标高度契合。
+            </p>
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        const notesBtn = document.getElementById('notes-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const notesModal = document.getElementById('notes-modal');
+        const notesContent = document.getElementById('notes-content');
+
+        function openModal() {
+            notesModal.classList.remove('opacity-0', 'pointer-events-none');
+            notesContent.classList.remove('-translate-y-10');
+        }
+
+        function closeModal() {
+            notesContent.classList.add('-translate-y-10');
+            notesModal.classList.add('opacity-0');
+            setTimeout(() => {
+                notesModal.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        notesBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        notesModal.addEventListener('click', (event) => {
+            if (event.target === notesModal) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

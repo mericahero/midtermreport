@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页 14/21 (分析阶段：鱼骨图)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+        }
+        #notes-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        /* Fishbone Diagram Styles */
+        .fishbone-spine {
+            width: 100%;
+            height: 4px;
+            background-color: #374151;
+            position: relative;
+        }
+        .fishbone-head {
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid #374151;
+        }
+        .main-bone {
+            position: absolute;
+            height: 2px;
+            background-color: #4b5563;
+            transform-origin: left;
+        }
+        .sub-bone {
+            position: relative;
+            padding-left: 1rem;
+        }
+        .sub-bone::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 1rem;
+            height: 2px;
+            background-color: #6b7280;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4 md:p-8">
+
+    <div class="w-full max-w-7xl mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">3.7 分析(Analyze)阶段：初步发现与根本原因探索</h1>
+        </header>
+
+        <main class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <!-- Fishbone Diagram Container -->
+            <div class="w-full">
+                <div class="flex items-center justify-center">
+                    <!-- Spine and Head -->
+                    <div class="flex-grow fishbone-spine">
+                        <!-- Top Bones -->
+                        <div class="absolute top-0 left-[20%] w-[25%] transform -rotate-45 main-bone">
+                            <span class="absolute -top-6 left-2 font-bold text-xl text-blue-700">人 (Man)</span>
+                            <div class="absolute top-[-4rem] left-[5rem] text-sm">
+                                <p class="sub-bone bg-blue-100 text-blue-800 p-1 rounded">人员培训不足</p>
+                            </div>
+                        </div>
+                        <div class="absolute top-0 left-[60%] w-[25%] transform -rotate-45 main-bone">
+                             <span class="absolute -top-6 left-2 font-bold text-xl text-indigo-700">机 (Machine)</span>
+                             <div class="absolute top-[-4rem] left-[5rem] text-sm">
+                                <p class="sub-bone bg-indigo-100 text-indigo-800 p-1 rounded">AI模型精准度不足</p>
+                            </div>
+                        </div>
+                        <!-- Bottom Bones -->
+                        <div class="absolute bottom-0 left-[20%] w-[25%] transform rotate-45 main-bone">
+                            <span class="absolute bottom-[-1.5rem] left-2 font-bold text-xl text-emerald-700">法 (Method)</span>
+                             <div class="absolute top-[-5rem] left-[5rem] text-sm space-y-2">
+                                <p class="sub-bone bg-emerald-100 text-emerald-800 p-1 rounded">规则更新传递机制无效</p>
+                                <p class="sub-bone bg-emerald-100 text-emerald-800 p-1 rounded">SOP不清晰、可操作性差</p>
+                            </div>
+                        </div>
+                         <div class="absolute bottom-0 left-[60%] w-[25%] transform rotate-45 main-bone">
+                            <span class="absolute bottom-[-1.5rem] left-2 font-bold text-xl text-amber-700">环 (Environment)</span>
+                             <div class="absolute top-[-2rem] left-[5rem] text-sm">
+                                <p class="sub-bone bg-amber-100 text-amber-800 p-1 rounded">远程办公沟通不畅</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fishbone-head"></div>
+                    <div class="ml-4 p-4 bg-red-100 border-2 border-dashed border-red-500 rounded-lg">
+                        <h2 class="text-xl font-bold text-red-700">问题：<br>审核质量与效率不佳</h2>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Speaker Notes Button -->
+    <button id="notes-btn" class="fixed bottom-5 right-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+        讲者备注
+    </button>
+
+    <!-- Speaker Notes Modal -->
+    <div id="notes-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="notes-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full transform -translate-y-10 transition-transform duration-300">
+            <h3 class="text-2xl font-bold mb-4 text-blue-700">讲者备注</h3>
+            <p class="text-base text-gray-700 leading-relaxed">
+                完成了测量，我们进入了分析阶段。基于测量阶段的数据和发现，我们组织了跨部门的头脑风暴，运用鱼骨图系统地梳理了所有可能影响审核质量与效率的潜在原因。经过初步的筛选和5Why的深度追问，我们已经将分析的焦点，初步锁定在了几个关键方向上。正如大家在图上看到的，我们认为‘规则标准’本身的可操作性、‘AI系统’的辅助能力、以及‘人员培训’的有效性，是导致当前问题的几个最值得深入挖掘的领域。下一阶段，我们将通过更严谨的数据分析来验证这些假设。
+            </p>
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        const notesBtn = document.getElementById('notes-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const notesModal = document.getElementById('notes-modal');
+        const notesContent = document.getElementById('notes-content');
+
+        function openModal() {
+            notesModal.classList.remove('opacity-0', 'pointer-events-none');
+            notesContent.classList.remove('-translate-y-10');
+        }
+
+        function closeModal() {
+            notesContent.classList.add('-translate-y-10');
+            notesModal.classList.add('opacity-0');
+            setTimeout(() => {
+                notesModal.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        notesBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        notesModal.addEventListener('click', (event) => {
+            if (event.target === notesModal) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
